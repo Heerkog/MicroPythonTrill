@@ -39,7 +39,7 @@ MODE_DIFF = 0x03
 
 TYPES = ["Unknown", "Bar", "Square", "Craft", "Ring", "Hex", "Flex"]
 
-# Class that represents a generic Trill device
+# Class that represents a generic Trill sensor
 class TrillSensor(object):
 
     # Initialize a generic Trill sensor, with
@@ -224,13 +224,19 @@ class Square(TrillSensor):
 
 
 # Class representing a Trill Craft
-class Craft(Bar):
+class Craft(TrillSensor):
 
     def __init__(self, i2c, address=0x30, mode=MODE_CENTROID, sleep=10):
         super(Craft, self).__init__(i2c, address, mode, sleep)
         self.type = 3
         self.size = (1, 4096)
         self.channels = 30
+        self.maxTouches = 5
+        self.directions = 1
+
+        self.setMode(mode)
+        self.setScanSettings()
+        self.updateBaseline()
 
     def read(self):
         super(Craft, self).read()
@@ -245,13 +251,19 @@ class Craft(Bar):
 
 
 # Class representing a Trill Ring
-class Ring(Bar):
+class Ring(TrillSensor):
 
     def __init__(self, i2c, address=0x38, mode=MODE_CENTROID, sleep=10):
         super(Ring, self).__init__(i2c, address, mode, sleep)
         self.type = 4
         self.size = (1, 3584)
         self.channels = 28
+        self.maxTouches = 5
+        self.directions = 1
+
+        self.setMode(mode)
+        self.setScanSettings()
+        self.updateBaseline()
 
     def read(self):
         super(Ring, self).read()
@@ -266,12 +278,15 @@ class Ring(Bar):
 
 
 # Class representing a Trill Hex
-class Hex(Square):
+class Hex(TrillSensor):
 
     def __init__(self, i2c, address=0x40, mode=MODE_CENTROID, sleep=10):
         super(Hex, self).__init__(i2c, address, mode, sleep)
         self.type = 5
         self.size = (1664, 1920)
+        self.channels = 30
+        self.maxTouches = 4
+        self.directions = 2
 
         self.setMode(mode)
         self.setScanSettings()
