@@ -1,5 +1,5 @@
 ## MicroPython Trill Sensor Library
-This library offers implementations of Bela's Trill sensors for MicroPython.
+This library offers implementations of [Bela](https://bela.io/) 's [Trill touch sensors](https://bela.io/products/trill/) for MicroPython.
 
 ## Example usage
 
