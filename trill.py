@@ -114,15 +114,11 @@ class TrillSensor(object):
             speed = 0
         elif speed > 3:
             speed = 3
-        else:
-            speed = speed
 
         if resolution < 9:
             resolution = 9
         elif resolution > 16:
             resolution = 16
-        else:
-            resolution = resolution
 
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("3B", COMMAND_SCAN_SETTINGS, speed, resolution))
         time.sleep_ms(self.sleep)
