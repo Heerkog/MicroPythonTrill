@@ -60,6 +60,7 @@ class TrillSensor(object):
         self.maxTouches = 0
         self.directions = 0
 
+    # Ask the sensor to identify itself and read its type and firmware version
     def identify(self):
         self.i2c.writeto(self.address, struct.pack("1B", REG_DATA))
         time.sleep_ms(10)
@@ -152,8 +153,8 @@ class TrillSensor(object):
         time.sleep_ms(self.sleep)
 
     # Set the automatic scan interval (used with the EVT pin)
-    def setAutoScanInterval(self, interval):
-        self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("BH", COMMAND_AUTO_SCAN_INTERVAL, interval))
+    def setAutoScanInterval(self, interval=1):
+        self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_AUTO_SCAN_INTERVAL, interval))
         time.sleep_ms(self.sleep)
 
     # Returns True if the sensor is one-directional
