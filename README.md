@@ -10,11 +10,13 @@ from touch import Touches2D
 
 i2c = SoftI2C(scl=Pin(I2C_SCL), sda=Pin(I2C_SDA), freq=400000)
 
-s = Square(i2c)
+square = Square(i2c)
 
-data = s.read()
-t = Touches2D(data)
-print(t.getTouches())
+data = square.read()
+touches = Touches2D(data)
+
+for touch in touches.getTouches():
+    print(touch)
 ```
 
 ## Library functionality
@@ -55,7 +57,7 @@ The file `trill.py` consists of the following six classes with functions:
 The file `touch.py` consists of the following three classes with functions:
 
 * `Touches` Implements a helper class to obtain Trill sensor touches from `trill.MODE_CENTROID` data.
-  * `__init__(data)` Converts data read using MODE_CENTROID to a list of touches
+  * `__init__(data)` Converts data read using `trill.MODE_CENTROID` to a list of touches
   * `getTouches()` Returns a list of touches as tuples.
   * `getNumTouches()` Returns the number of touches registered.
   * `getTouch(index)` Returns the touch at `index` as a tuple.
