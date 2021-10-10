@@ -59,10 +59,6 @@ The file `touch.py` consists of the following three classes with functions:
   * `getTouches()` Returns a list of touches as tuples.
   * `getNumTouches()` Returns the number of touches registered.
   * `getTouch(index)` Returns the touch at `index` as a tuple.
-  
-  # in case of one-directional data, or
-  #  (horizontal position, vertical position, horizontal size, vertical size)
-  #  in case of two-directional data
 * `Touches1D` Subclass of `Touches`, interprets `trill.MODE_CENTROID` data from one-directional sensors.
   * `__init__(data)` Converts one-directional data read using MODE_CENTROID to a list of touches
   * `getTouches()` Returns a list of touches as tuples `[(vertical position, touch size), ...]`.
