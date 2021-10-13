@@ -33,7 +33,7 @@ The file `trill.py` consists of the following six classes with functions:
   * `getNumChannels()` Get the number of channels of the sensor.
   * `read()` Read the latest scan value from the sensor.
   * `setMode(mode)` Set the sensor mode, as either `trill.MODE_CENTROID`, `trill.MODE_RAW`, `trill.MODE_BASELINE`, or `trill.MODE_DIFF`.
-  * `getMode()` Get the sensor mode. Returns None if mode hasn't been set.
+  * `getMode()` Get the sensor mode. Returns `None` if mode hasn't been set.
   * `setScanSettings(speed=0, resolution=12)` Set the scan speed and resolution (numBits) of the sensor, with speed being a value from 0 to 3, and resolution being a value from 9 to 16.body
   * `updateBaseline()` Update the baseline capacitance values of the sensor.
   * `setPrescaler(prescaler=8)` Set the prescaler of the sensor, with prescaler being a value from 1 to 8.
@@ -61,6 +61,8 @@ The file `touch.py` consists of the following three classes with functions:
   * `getTouches()` Returns a list of touches as tuples.
   * `getNumTouches()` Returns the number of touches registered.
   * `getTouch(index)` Returns the touch at `index` as a tuple.
+  * `isEmpty()` Returns `True` if no touches are registered.
+    
 * `Touches1D` Subclass of `Touches`, interprets `trill.MODE_CENTROID` data from one-directional sensors.
   * `__init__(data)` Converts one-directional data read using MODE_CENTROID to a list of touches
   * `getTouches()` Returns a list of touches as tuples `[(vertical position, touch size), ...]`.

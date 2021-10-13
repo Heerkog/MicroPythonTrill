@@ -41,6 +41,10 @@ class Touches(object):
             touch = self.touches[index]
         return touch
 
+    # Returns True if no touches are registered
+    def isEmpty(self):
+        return len(self.touches) == 0
+
 
 # Touches given one-directional data, e.g., using Bar, Ring, or Craft
 class Touches1D(Touches):
