@@ -72,23 +72,23 @@ class TrillSensor(object):
             print("Warning: connected Trill device does not identify as", TYPES[self.type], "!!!")
 
     # Get the sensor type
-    def getType(self):
+    def get_type(self):
         if self.identifiedType is 0:
             self.identify()
         return TYPES[self.identifiedType]
 
     # Get the sensor firmware version
-    def getFirmwareVersion(self):
+    def get_firmware_version(self):
         if self.firmware is None:
             self.identify()
         return self.firmware
 
     # Get the size of the sensor as a tuple (x, y)
-    def getSize(self):
+    def get_size(self):
         return self.size
 
     # Get the number of channels of the sensor
-    def getNumChannels(self):
+    def get_num_channels(self):
         return self.channels
 
     # Read the latest scan value from the sensor
@@ -97,20 +97,20 @@ class TrillSensor(object):
         time.sleep_ms(self.sleep)
 
     # Set the sensor mode
-    def setMode(self, mode):
+    def set_mode(self, mode):
         self.mode = mode
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_MODE, mode))
         time.sleep_ms(self.sleep)
 
     # Get the sensor mode
     # Returns None if mode hasn't been set
-    def getMode(self):
+    def get_mode(self):
         return self.mode
 
     # Set the scan speed and resolution (numBits) of the sensor, with
     #  speed being a value from 0 to 3, and
     #  resolution being a value from 9 to 16
-    def setScanSettings(self, speed=0, resolution=12):
+    def set_scan_settings(self, speed=0, resolution=12):
         if speed < 0:
             speed = 0
         elif speed > 3:
@@ -125,44 +125,44 @@ class TrillSensor(object):
         time.sleep_ms(self.sleep)
 
     # Update the baseline capacitance values of the sensor
-    def updateBaseline(self):
+    def update_baseline(self):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("1B", COMMAND_BASELINE_UPDATE))
         time.sleep_ms(self.sleep)
 
     # Set the prescaler of the sensor, with
     #  prescaler being a value from 1 to 8
-    def setPrescaler(self, prescaler=8):
+    def set_prescaler(self, prescaler=8):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_PRESCALER, prescaler))
         time.sleep_ms(self.sleep)
 
     # Set the noise threshold for the MODE_CENTROID and MODE_DIFF modes, with
     #  threshold being a value from 0 to 255
-    def setNoiseThreshold(self, threshold):
+    def set_noise_threshold(self, threshold):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_NOISE_THRESHOLD, threshold))
         time.sleep_ms(self.sleep)
 
     # Set the IDAC value of the sensor, with
     #  value being a value from 0 to 255
-    def setIDACValue(self, value):
+    def set_IDAC_value(self, value):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_IDAC, value))
         time.sleep_ms(self.sleep)
 
     # Set the minimum registered touch size
-    def setMinimumTouchSize(self, minSize):
+    def set_minimum_touch_size(self, minSize):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("BH", COMMAND_MINIMUM_SIZE, minSize))
         time.sleep_ms(self.sleep)
 
     # Set the automatic scan interval (used with the EVT pin)
-    def setAutoScanInterval(self, interval=1):
+    def set_auto_scan_interval(self, interval=1):
         self.i2c.writeto_mem(self.address, REG_COMMAND, struct.pack("2B", COMMAND_AUTO_SCAN_INTERVAL, interval))
         time.sleep_ms(self.sleep)
 
     # Returns True if the sensor is one-directional
-    def is1D(self):
+    def is_1D(self):
         return self.directions is 1
 
     # Returns True if the sensor is two-directional
-    def is2D(self):
+    def is_2D(self):
         return self.directions is 2
 
 
@@ -177,9 +177,9 @@ class Bar(TrillSensor):
         self.maxTouches = 5
         self.directions = 1
 
-        self.setMode(mode)
-        self.setScanSettings()
-        self.updateBaseline()
+        self.set_mode(mode)
+        self.set_scan_settings()
+        self.update_baseline()
 
     def read(self):
         super(Bar, self).read()
@@ -204,9 +204,9 @@ class Square(TrillSensor):
         self.maxTouches = 4
         self.directions = 2
 
-        self.setMode(mode)
-        self.setScanSettings()
-        self.updateBaseline()
+        self.set_mode(mode)
+        self.set_scan_settings()
+        self.update_baseline()
 
     def read(self):
         super(Square, self).read()
@@ -231,9 +231,9 @@ class Craft(TrillSensor):
         self.maxTouches = 5
         self.directions = 1
 
-        self.setMode(mode)
-        self.setScanSettings()
-        self.updateBaseline()
+        self.set_mode(mode)
+        self.set_scan_settings()
+        self.update_baseline()
 
     def read(self):
         super(Craft, self).read()
@@ -258,9 +258,9 @@ class Ring(TrillSensor):
         self.maxTouches = 5
         self.directions = 1
 
-        self.setMode(mode)
-        self.setScanSettings()
-        self.updateBaseline()
+        self.set_mode(mode)
+        self.set_scan_settings()
+        self.update_baseline()
 
     def read(self):
         super(Ring, self).read()
@@ -285,9 +285,9 @@ class Hex(TrillSensor):
         self.maxTouches = 4
         self.directions = 2
 
-        self.setMode(mode)
-        self.setScanSettings()
-        self.updateBaseline()
+        self.set_mode(mode)
+        self.set_scan_settings()
+        self.update_baseline()
 
     def read(self):
         super(Hex, self).read()

@@ -27,22 +27,22 @@ class Touches(object):
     #  (vertical position, touch size) in case of one-directional data, or
     #  (horizontal position, vertical position, horizontal size, vertical size)
     #  in case of two-directional data
-    def getTouches(self):
+    def get_touches(self):
         return self.touches
 
     # Returns the number of touches
-    def getNumTouches(self):
+    def get_num_touches(self):
         return len(self.touches)
 
     # Returns the touch at index as a tuple
-    def getTouch(self, index):
+    def get_touch(self, index):
         touch = None
         if index < len(self.touches):
             touch = self.touches[index]
         return touch
 
     # Returns True if no touches are registered
-    def isEmpty(self):
+    def is_empty(self):
         return len(self.touches) == 0
 
 
