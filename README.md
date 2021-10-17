@@ -37,7 +37,7 @@ The file `trill.py` consists of the following six classes with functions:
   * `set_scan_settings(speed=0, resolution=12)` Set the scan speed and resolution (numBits) of the sensor, with speed being a value from 0 to 3, and resolution being a value from 9 to 16.body
   * `update_baseline()` Update the baseline capacitance values of the sensor.
   * `set_prescaler(prescaler=8)` Set the prescaler of the sensor, with prescaler being a value from 1 to 8.
-  * `set_noise_threshold(threshold)` Set the noise threshold for the `trill.MODE_CENTROID` and `trillMODE_DIFF` modes, with threshold being a value from 0 to 255.
+  * `set_noise_threshold(threshold)` Set the noise threshold for the `trill.MODE_CENTROID` and `trill.MODE_DIFF` modes, with threshold being a value from 0 to 255.
   * `set_IDAC_value(value)` Set the IDAC value of the sensor, with value being a value from 0 to 255.
   * `set_minimum_touch_size(self, minSize)` Set the minimum registered touch size.
   * `set_auto_scan_interval(interval=1)` Set the automatic scan interval (used with the EVT pin).
