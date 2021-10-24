@@ -1,7 +1,68 @@
-## MicroPython Trill Sensor Library
-This library offers implementations of [Bela](https://bela.io/) 's [Trill touch sensors](https://bela.io/products/trill/) for MicroPython.
+<div id="top"></div>
 
-## Example usage
+
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![GPL License][license-shield]][license-url]
+
+
+
+<!-- PROJECT HEADER -->
+<br />
+<div align="center">
+<h3 align="center">MicroPython Trill Sensor Library</h3>
+
+  <p align="center">
+    This library offers implementations of Bela's Trill touch sensors for MicroPython.
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+This library offers implementations of [Bela](https://bela.io/) 's [Trill touch sensors](https://bela.io/products/trill/) for MicroPython.
+The library has been tested using an ESP32 development board ([TinyPICO](https://tinypico.com)).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy simply clone this repository.
+
+   ```sh
+   git clone https://github.com/heerkog/MicroPythonTrill.git
+   ```
+
+The repository is structured as followed:
+
+* `LICENSE` the license.
+* `readme.md`
+* `touch.py` touch helper classes.
+* `trill.py` the library classes.
+
+Example implementation:
 
 ```
 from machine import SoftI2C, Pin
@@ -19,7 +80,13 @@ for touch in touches.getTouches():
     print(touch)
 ```
 
-## Library functionality
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
 The library consists of two python files with the following classes:
 
 The file `trill.py` consists of the following six classes with functions:
@@ -44,15 +111,15 @@ The file `trill.py` consists of the following six classes with functions:
   * `is_1D()` Returns `True` if the sensor is one-directional.
   * `is_2D()` Returns `True` if the sensor is two-directional.
 * `Bar` Subclass of `TrillSensor`, implements a Trill Bar sensor.
-    * `__init__(i2c, address=0x20, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x20`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
+  * `__init__(i2c, address=0x20, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x20`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
 * `Square` Subclass of `TrillSensor`, implements a Trill Square sensor.
-    * `__init__(i2c, address=0x28, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Square sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x28`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
+  * `__init__(i2c, address=0x28, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Square sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x28`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
 * `Craft` Subclass of `TrillSensor`, implements a Trill Craft sensor.
-    * `__init__(i2c, address=0x30, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x30`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
+  * `__init__(i2c, address=0x30, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x30`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
 * `Ring` Subclass of `TrillSensor`, implements a Trill Ring sensor.
-    * `__init__(i2c, address=0x38, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x38`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
+  * `__init__(i2c, address=0x38, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x38`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
 * `Hex` Subclass of `TrillSensor`, implements a Trill Hex sensor.
-    * `__init__(i2c, address=0x40, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x40`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
+  * `__init__(i2c, address=0x40, mode=MODE_CENTROID, sleep=10)` Initializes a Trill Bar sensor using the I<sup>2</sup>C bus `i2c`, the I<sup>2</sup>C address `0x40`, the mode `trill.MODE_CENTROID`, and a sleep time between I<sup>2</sup>C commands of `10` ms.
 
 The file `touch.py` consists of the following three classes with functions:
 
@@ -67,7 +134,75 @@ The file `touch.py` consists of the following three classes with functions:
   * `get_touches()` Returns a list of touches as tuples `[(vertical position, touch size), ...]`.
   * `get_touch(index)` Returns the touch at `index` as a tuple `(vertical position, touch size)`.
 * `Touches2D` Subclass of `Touches`, interprets `trill.MODE_CENTROID` data from two-directional sensors.
-  * `__init__(data)` Converts two-directional data read using MODE_CENTROID to a list of touches  
+  * `__init__(data)` Converts two-directional data read using MODE_CENTROID to a list of touches
   * `get_touches()` Returns a list of touches as tuples `[(horizontal position, vertical position, horizontal size, vertical size), ...]`.
   * `get_touch(index)` Returns the touch at `index` as a tuple `(horizontal position, vertical position, horizontal size, vertical size)`.
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the GNU General Public License. See `LICENSE` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Heerko Groefsema - [@heerkog](https://twitter.com/heerkog)
+
+Project Link: [https://github.com/heerkog/MicroPythonTrill](https://github.com/heerkog/MicroPythonTrill)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+The following resources were of interest during development:
+
+* [About Trill](https://learn.bela.io/products/trill/about-trill/)
+* [Trill Arduino](https://github.com/BelaPlatform/Trill-Arduino)  
+* [Mikes Pi Bakery](https://github.com/Grumpy-Mike/Mikes-Pi-Bakery)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/heerkog/MicroPythonTrill.svg?style=for-the-badge
+[contributors-url]: https://github.com/heerkog/MicroPythonTrill/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/heerkog/MicroPythonTrill.svg?style=for-the-badge
+[forks-url]: https://github.com/heerkog/MicroPythonTrill/network/members
+[stars-shield]: https://img.shields.io/github/stars/heerkog/MicroPythonTrill.svg?style=for-the-badge
+[stars-url]: https://github.com/heerkog/MicroPythonTrill/stargazers
+[issues-shield]: https://img.shields.io/github/issues/heerkog/MicroPythonTrill.svg?style=for-the-badge
+[issues-url]: https://github.com/heerkog/MicroPythonTrill/issues
+[license-shield]: https://img.shields.io/github/license/heerkog/MicroPythonTrill.svg?style=for-the-badge
+[license-url]: https://github.com/heerkog/MicroPythonTrill/blob/master/LICENSE.txt
 
